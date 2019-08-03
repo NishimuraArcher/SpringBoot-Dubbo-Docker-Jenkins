@@ -6,6 +6,7 @@ package com.gaoxi.redis.service;
  * @description
  */
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +19,13 @@ import org.springframework.data.redis.core.ValueOperations;
 @org.springframework.stereotype.Service
 @Service(version = "1.0.0")
 public class RedisServiceImpl implements RedisService {
+
+
+
+    @Override
+    public <K, HK, HV> boolean setMap(K key, Map<HK, HV> map, Long expireTime) {
+        return false;
+    }
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -91,7 +99,6 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      * @return
      */
-    @Override
     public boolean set(final String key, Object value) {
         boolean result = false;
         try {
@@ -104,6 +111,21 @@ public class RedisServiceImpl implements RedisService {
         return result;
     }
 
+    @Override
+    public boolean set(String key, Serializable value) {
+        return false;
+    }
+
+    @Override
+    public boolean set(String key, Serializable value, Long expireTime) {
+        return false;
+    }
+
+    @Override
+    public <K, HK, HV> Map<HK, HV> getMap(K key) {
+        return null;
+    }
+
     /**
      * 写入缓存
      *
@@ -111,7 +133,6 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      * @return
      */
-    @Override
     public boolean set(final String key, Object value, Long expireTime) {
         boolean result = false;
         try {

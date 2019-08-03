@@ -40,7 +40,7 @@ public interface RedisService {
      * @param key
      * @return
      */
-    public Serializable get(final String key);
+    public Object get(final String key);
 
     /**
      * 添加key-value（使用默认失效时间）
